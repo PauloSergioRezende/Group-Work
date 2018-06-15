@@ -17,7 +17,7 @@ public class Escritor {
 
 				float[] aux = arquivo.get(i).clone();
 
-				for (int j = 0; j < 3; j++) {
+				for (int j = 0; j < arquivo.get(i).length; j++) {
 					String aux2 = String.valueOf(aux[j]);
 					bw.write(aux2);
 					if (j < 2) {
@@ -46,7 +46,7 @@ public class Escritor {
 
 				float[] aux = arquivo.get(i).clone();
 
-				for (int j = 0; j < 3; j++) {
+				for (int j = 0; j < arquivo.get(i).length; j++) {
 					int aux2 = (int) aux[j];
 					bw.write(String.valueOf(aux2));
 					if (j < 2) {

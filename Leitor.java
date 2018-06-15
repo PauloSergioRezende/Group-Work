@@ -32,10 +32,17 @@ public class Leitor {
 				String[] s2 = s.split(",");
 				float[] vetor = new float[s2.length];
 
-				for (int i = 0; i < s2.length; i++) {
-					vetor[i] = Float.valueOf(s2[i]);
+				try {
+					
+					for (int i = 0; i < s2.length; i++) {
+						vetor[i] = Float.valueOf(s2[i]);
+					}
+					arquivo.add(vetor);
+					
+				} catch (Exception e) {
+					System.out.println("Linha Invalida ou Nula.");
 				}
-				arquivo.add(vetor);
+
 				vetor = null;
 				s2 = null;
 				s = Br.readLine();
