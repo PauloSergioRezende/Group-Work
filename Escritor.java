@@ -4,30 +4,55 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Escritor {
+	private Scanner in;
+	private String nomeSaida;
+	
+	
+	public Escritor() {
 
-	public void EscreverFloat(ArrayList<float[]> arquivo) {
+		System.out.println("Digite o nome do Arquivo de Saida");
+		in = new Scanner(System.in);
+		String aux = in.nextLine();
+		String[] aux2 = aux.split(".");
+		nomeSaida = aux2[0] + ".txt";
+	}
+
+	public Escritor(String nome) {
+		
 		try {
-			OutputStream os = new FileOutputStream("saida.txt");
+			String[] aux2 = nome.split(".");
+			nomeSaida = aux2[0] + ".txt";
+		}catch(Exception e) {	
+			nomeSaida = nome + ".txt";
+		}
+		
+	}
+
+	
+	public void EscreverFloat(ArrayList<float[]> arquivo) {
+		
+		try {
+			
+			OutputStream os = new FileOutputStream(nomeSaida);
 			OutputStreamWriter osw = new OutputStreamWriter(os);
 			BufferedWriter bw = new BufferedWriter(osw);
 
 			for (int i = 0; i < arquivo.size(); i++) {
-
-				float[] aux = arquivo.get(i).clone();
-
 				for (int j = 0; j < arquivo.get(i).length; j++) {
-					String aux2 = String.valueOf(aux[j]);
-					bw.write(aux2);
-					if (j < 2) {
+					
+					bw.write(String.valueOf(arquivo.get(i)[j]));
+					
+					if (j < arquivo.get(i).length-1) {
 						bw.write(", ");
 					}
 				}
+				
 				if(i != arquivo.size()-1) {
 					bw.newLine();
 				}
-
 			}
 
 			bw.close();
@@ -37,22 +62,23 @@ public class Escritor {
 	}
 	
 	public void EscreverInt(ArrayList<float[]> arquivo) {
+		
 		try {
-			OutputStream os = new FileOutputStream("saida.txt");
+			
+			OutputStream os = new FileOutputStream(nomeSaida);
 			OutputStreamWriter osw = new OutputStreamWriter(os);
 			BufferedWriter bw = new BufferedWriter(osw);
 
 			for (int i = 0; i < arquivo.size(); i++) {
-
-				float[] aux = arquivo.get(i).clone();
-
 				for (int j = 0; j < arquivo.get(i).length; j++) {
-					int aux2 = (int) aux[j];
-					bw.write(String.valueOf(aux2));
-					if (j < 2) {
+					
+					bw.write(String.valueOf((int)arquivo.get(i)[j]));
+					
+					if (j < arquivo.get(i).length-1) {
 						bw.write(", ");
 					}
 				}
+				
 				if(i != arquivo.size()-1) {
 					bw.newLine();
 				}

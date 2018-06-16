@@ -2,9 +2,10 @@
 import java.util.ArrayList;
 public class Calculos {
 	
-	public ArrayList<float[]> processamento(ArrayList<float[]> Arquivo) {
+	public ArrayList<float[]> Calcular(ArrayList<float[]> Arquivo) {
  		
-		for(int i = 0 ; i < Arquivo.size() ; i++) {
+		try {
+			for(int i = 0 ; i < Arquivo.size() ; i++) {
 			
 			float[] aux = new float[3];
 			aux[0] = Arquivo.get(i).length;
@@ -16,7 +17,15 @@ public class Calculos {
 		}
 		
 		return Arquivo;
+		
+		}catch(Exception e){
+			System.out.println("Arquivo Inválido");
+			return null;
+		}
+		
 	}
+	
+	
 	
 	private float DesvioPadrao(float[] DP) {
 		
